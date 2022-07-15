@@ -1,0 +1,47 @@
+.inputaddr, .route-wrap{
+    display: flex;
+    z-index: 2;
+    position: absolute;
+    left: 50%;      /*화면의 왼쪽으로부터 50% 이동*/
+    transform:translateX(-50%); /*자신의 크기 절반만큼 왼쪽으로 이동*/
+}
+
+.route-wrap{
+    /* font-family: 'Do Hyeon', sans-serif; */
+    font-family: 'Jua', sans-serif;
+    font-size: large;
+    bottom: 3%;
+}
+#short, #safe{
+    background-color: whitesmoke;
+    padding: 10px 10px 5px 10px;
+    padding-right: 35px;
+    margin: 30px;
+}
+
+#pathForm{
+    display: flex;
+    justify-content: center;
+    width: 600px;
+
+}
+html, body { height: 100%; }
+
+#map{
+    z-index: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#start_input, #end_input{
+    margin-bottom: 1% !important;
+}
+
+#search-btn{
+    margin: 5px;
+}
+
+.input-wrap{
+    width: 80%;
+}
