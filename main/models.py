@@ -145,7 +145,6 @@ class Cctv(models.Model):
 #     lon = models.FloatField()
 #
 #     class Meta:
-#         managed = False
 #         db_table = 'lamp'
 
 
