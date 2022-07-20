@@ -6,6 +6,8 @@ import morton
 from main.models import *
 import time
 
+import unicodecsv as csv
+
 from queue import PriorityQueue
 
 Point = collections.namedtuple("Point", ["x", "y"])
@@ -72,7 +74,7 @@ def giveCost(grid, startx, starty, endx, endy) :
     cctv = Cctv.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
     # securitycenter = Securitycenter.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
     # alltimeshop = Alltimeshop.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
-    
+
     # 24시 가게
     # for coor in alltimeshop :
     #     Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
@@ -87,14 +89,20 @@ def giveCost(grid, startx, starty, endx, endy) :
     #
     #     if(Hex_Point in Hmap) :
     #         Hmap[Hex_Point] = Hmap[Hex_Point]+1
-
+    cctv_data = []
     # cctv
     for coor in cctv :
-        Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat))) 
-        
+        Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
+
+        cctv_data.append([coor.lat, coor.lon])
+        print(type(coor.lat), type(coor.lon))
+
         if(Hex_Point in Hmap) :
             Hmap[Hex_Point] = Hmap[Hex_Point]+1
-        
+
+    # @chu : get cctv_data, write file
+    print("cctv : ", cctv_data)
+    writeFile(cctv_data)
 
     # loadpoint
     # for coor in loadpoint :
@@ -229,6 +237,8 @@ def startSetting(start_coordinate, end_coordinate) :
     startY = start_coordinate[0]
     endX = end_coordinate[1]
     endY = end_coordinate[0]
+    print("출발 : ", startX, ", ", startY)
+    print("도착 : ", endX, ", ", endY)
 
     center=hexgrid.Point((float(startX)+float(endX))/2,(float(startY)+float(endY))/2)   #중앙
     rate = 110.574 / (111.320 * math.cos(37.55582994870823 * math.pi / 180))   #서울의 중앙을 잡고, 경도값에 대한 비율     
@@ -275,3 +285,10 @@ def startSetting(start_coordinate, end_coordinate) :
     path =astar(sPoint,ePoint,grid,map_size) 
     # print(path)
     return Hmap, grid, path, TileValue_Map
+
+# @chu : get cctv_data, write file
+def writeFile(cctv_data):
+    # file_path = './cctv.csv'
+    #
+    # with open(file_path, 'w') as f:
+    #     f.write(cctv_data)
