@@ -179,28 +179,50 @@ $("#find_botton").click(function(){
 				var tDistance = "총 거리 : "+ ((resultData[0].properties.totalDistance) / 1000).toFixed(1) + "km";
                 var tTime = " 총 시간 : "+ ((resultData[0].properties.totalTime) / 60).toFixed(0) + "분";
                 console.log(tDistance+" "+tTime);
-                
+
                 $('#short-route').text(tDistance)
                 $('#short-time').text(tTime)
-                
+
                 for ( var i in resultData) { //for문 [S]
                     var geometry = resultData[i].geometry;  //좌표정보 ()
-                    
+
                     if (geometry.type == "LineString") {
 
                         for ( var j in geometry.coordinates) {
-                            // 경로들의 결과값(구간)들을 포인트 객체로 변환 
+                            // 경로들의 결과값(구간)들을 포인트 객체로 변환
                             var latlng = new Tmapv2.Point(geometry.coordinates[j][0], geometry.coordinates[j][1]);
-                            
+
                             // 포인트 객체를 받아 좌표값으로 변환
                             var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(latlng);
                             // 포인트객체의 정보로 좌표값 변환 객체로 저장
                             var convertChange = new Tmapv2.LatLng(convertPoint._lat,convertPoint._lng);
                             // 배열에 담기
                             shortestRoute.push([convertChange['_lat'],convertChange['_lng']]);
-                        }              
-                    } 
+                        }
+                    }
                 }
+                $.ajax({
+            method : "POST",
+            url : saferoute,
+            raditional : true,
+            data : {
+                "startX" : resultArray['startaddr'][1],
+                "startY" :resultArray['startaddr'][0],
+                "endX" :resultArray['endaddr'][1],
+                "endY" :resultArray['endaddr'][0],
+                // 'csrfmiddlewaretoken':  csrftoken,
+            },
+            success: (response) => {
+                console.log("성공")
+                safeRoute = response['result']
+                var safeDistance = "총 거리 : "+ (response['totalDistance']).toFixed(1) + "km";
+                var safeTime = " 총 시간 : "+ (response['totalTime']).toFixed(0) + "분";
+
+                $('#safe-route').text(safeDistance)
+                $('#safe-time').text(safeTime)
+
+                $('.route-wrap').show();
+                console.log(safeRoute);
                 console.log('최단경로',shortestRoute);
             },
             fail: (error) => {
@@ -221,8 +243,6 @@ $("#find_botton").click(function(){
                 leaf_map.removeLayer(short_line);
                 leaf_map.removeLayer(safe_line);
             }
-
-
             leaf_map.setView([resultArray['startaddr'][0],resultArray['startaddr'][1]],16)
 
             start_markers=L.marker([resultArray['startaddr'][0],resultArray['startaddr'][1]]).addTo(leaf_map);
@@ -238,8 +258,14 @@ $("#find_botton").click(function(){
             //안전 route
             safe_line = L.polyline(safeRoute,{
                 color: "green",
-                weight: 3
+                weight: 3,
             }).addTo(leaf_map);
+        });
+                console.log('최단경로',shortestRoute);
+            },
+            fail: (error) => {
+                console.log(error);
+            }
         });
         //안전경로
 
@@ -248,5 +274,3 @@ $("#find_botton").click(function(){
 
 
 });
-
-
