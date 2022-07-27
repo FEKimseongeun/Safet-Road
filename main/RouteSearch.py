@@ -6,7 +6,6 @@ import morton
 from main.models import *
 import time
 
-import unicodecsv as csv
 
 from queue import PriorityQueue
 
@@ -70,39 +69,39 @@ def giveCost(grid, startx, starty, endx, endy) :
 
     #x : lon(128), y : lat(37)
     # loadpoint = Loadpoint.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
-    # lamp = Lamp.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
+    lamp = Lamp.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
     cctv = Cctv.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
-    # securitycenter = Securitycenter.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
-    # alltimeshop = Alltimeshop.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
+    securitycenter = Securitycenter.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
+    alltimeshop = Alltimeshop.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
 
-    # 24시 가게
-    # for coor in alltimeshop :
-    #     Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
-    #
-    #     if(Hex_Point in Hmap) :
-    #         Hmap[Hex_Point] = Hmap[Hex_Point]+1
+    # 여성지킴이집->편의점위주
+    for coor in alltimeshop :
+        Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
+
+        if(Hex_Point in Hmap) :
+            Hmap[Hex_Point] = Hmap[Hex_Point]+1
 
 
-    # securitycenter
-    # for coor in securitycenter :
-    #     Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
-    #
-    #     if(Hex_Point in Hmap) :
-    #         Hmap[Hex_Point] = Hmap[Hex_Point]+1
+    # 자율방범대
+    for coor in securitycenter :
+        Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
+
+        if(Hex_Point in Hmap) :
+            Hmap[Hex_Point] = Hmap[Hex_Point]+1
     cctv_data = []
     # cctv
     for coor in cctv :
         Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
 
         cctv_data.append([coor.lat, coor.lon])
-        print(type(coor.lat), type(coor.lon))
+        # print(type(coor.lat), type(coor.lon))
 
         if(Hex_Point in Hmap) :
             Hmap[Hex_Point] = Hmap[Hex_Point]+1
 
     # @chu : get cctv_data, write file
-    print("cctv : ", cctv_data)
-    writeFile(cctv_data)
+    # print("cctv : ", cctv_data)
+    # writeFile(cctv_data)
 
     # loadpoint
     # for coor in loadpoint :
@@ -112,12 +111,12 @@ def giveCost(grid, startx, starty, endx, endy) :
     #         Hmap[Hex_Point] = Hmap[Hex_Point]+1
 
 
-    # lamp
-    # for coor in lamp :
-    #     Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
-    #
-    #     if(Hex_Point in Hmap) :
-    #         Hmap[Hex_Point] = Hmap[Hex_Point]+1
+    #안심벨(공중화장실인듯)
+    for coor in lamp :
+        Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
+
+        if(Hex_Point in Hmap) :
+            Hmap[Hex_Point] = Hmap[Hex_Point]+1
 
 
         
@@ -274,7 +273,7 @@ def startSetting(start_coordinate, end_coordinate) :
 
     neighbor =grid.hex_neighbors(grid.hex_at(center),real_hexMap_size) #hex_neighbor : type(Hex, int) -> list
     neighbor.append(grid.hex_at(center))
-    # print(neighbor)
+    # print("neighbor ", neighbor)
 
     for hex in neighbor :
         Hmap[hex]=0
@@ -283,12 +282,8 @@ def startSetting(start_coordinate, end_coordinate) :
 
     # result = astar(sPoint,ePoint,grid,map_size)
     path =astar(sPoint,ePoint,grid,map_size) 
-    # print(path)
+    # print("path ",path)
     return Hmap, grid, path, TileValue_Map
 
 # @chu : get cctv_data, write file
-def writeFile(cctv_data):
-    # file_path = './cctv.csv'
-    #
-    # with open(file_path, 'w') as f:
-    #     f.write(cctv_data)
+#

@@ -160,48 +160,54 @@ $("#find_botton").click(function(){
     }).then((arg) =>{
         console.log('좌표변환후 최단거리 실행');
         $.ajax({
-            method : "POST",
-            url : "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
-            data : {
-                "appKey" : "l7xxa033eab75a3a4ab38dd11a74fb8b87c6",
-                "startX" : resultArray['startaddr'][1],
-                "startY" :resultArray['startaddr'][0],
-                "endX" :resultArray['endaddr'][1],
-                "endY" :resultArray['endaddr'][0],
-                "reqCoordType" : "WGS84GEO",
-                "resCoordType" : "EPSG3857",
-                "startName" : "출발지",
-                "endName" : "도착지"
+            method: "POST",
+            url: "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
+            data: {
+                "appKey": "l7xxa033eab75a3a4ab38dd11a74fb8b87c6",
+                "startX": resultArray['startaddr'][1],
+                "startY": resultArray['startaddr'][0],
+                "endX": resultArray['endaddr'][1],
+                "endY": resultArray['endaddr'][0],
+                "reqCoordType": "WGS84GEO",
+                "resCoordType": "EPSG3857",
+                "startName": "출발지",
+                "endName": "도착지"
             },
             success: (result) => {
                 var resultData = result.features;       //출발지부터 목적지까지 경로좌표들(Point, Line)
                 //결과 출력
-				var tDistance = "총 거리 : "+ ((resultData[0].properties.totalDistance) / 1000).toFixed(1) + "km";
-                var tTime = " 총 시간 : "+ ((resultData[0].properties.totalTime) / 60).toFixed(0) + "분";
-                console.log(tDistance+" "+tTime);
+                var tDistance = "총 거리 : " + ((resultData[0].properties.totalDistance) / 1000).toFixed(1) + "km";
+                var tTime = " 총 시간 : " + ((resultData[0].properties.totalTime) / 60).toFixed(0) + "분";
+                console.log(tDistance + " " + tTime);
 
                 $('#short-route').text(tDistance)
                 $('#short-time').text(tTime)
 
-                for ( var i in resultData) { //for문 [S]
+                for (var i in resultData) { //for문 [S]
                     var geometry = resultData[i].geometry;  //좌표정보 ()
 
                     if (geometry.type == "LineString") {
 
-                        for ( var j in geometry.coordinates) {
+                        for (var j in geometry.coordinates) {
                             // 경로들의 결과값(구간)들을 포인트 객체로 변환
                             var latlng = new Tmapv2.Point(geometry.coordinates[j][0], geometry.coordinates[j][1]);
 
                             // 포인트 객체를 받아 좌표값으로 변환
                             var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(latlng);
                             // 포인트객체의 정보로 좌표값 변환 객체로 저장
-                            var convertChange = new Tmapv2.LatLng(convertPoint._lat,convertPoint._lng);
+                            var convertChange = new Tmapv2.LatLng(convertPoint._lat, convertPoint._lng);
                             // 배열에 담기
-                            shortestRoute.push([convertChange['_lat'],convertChange['_lng']]);
+                            shortestRoute.push([convertChange['_lat'], convertChange['_lng']]);
                         }
                     }
                 }
-                $.ajax({
+            },
+            fail: (error) => {
+                console.log(error);
+            }
+        });        //안전경로
+
+            $.ajax({
             method : "POST",
             url : saferoute,
             raditional : true,
@@ -210,7 +216,7 @@ $("#find_botton").click(function(){
                 "startY" :resultArray['startaddr'][0],
                 "endX" :resultArray['endaddr'][1],
                 "endY" :resultArray['endaddr'][0],
-                // 'csrfmiddlewaretoken':  csrftoken,
+                'csrfmiddlewaretoken':  csrftoken,
             },
             success: (response) => {
                 console.log("성공")
@@ -261,15 +267,8 @@ $("#find_botton").click(function(){
                 weight: 3,
             }).addTo(leaf_map);
         });
-                console.log('최단경로',shortestRoute);
-            },
-            fail: (error) => {
-                console.log(error);
-            }
-        });
-        //안전경로
 
-    });
+});
 
 
 
