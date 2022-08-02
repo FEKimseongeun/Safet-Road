@@ -69,25 +69,25 @@ def giveCost(grid, startx, starty, endx, endy) :
 
     #x : lon(128), y : lat(37)
     # loadpoint = Loadpoint.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
-    lamp = Lamp.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
+    # lamp = Lamp.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
     cctv = Cctv.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
-    securitycenter = Securitycenter.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
-    alltimeshop = Alltimeshop.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
+    # securitycenter = Securitycenter.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
+    # alltimeshop = Alltimeshop.objects.filter(lon__range=(endx,startx),lat__range=(endy,starty)).order_by('lat')
 
     # 여성지킴이집->편의점위주
-    for coor in alltimeshop :
-        Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
-
-        if(Hex_Point in Hmap) :
-            Hmap[Hex_Point] = Hmap[Hex_Point]+1
+    # for coor in alltimeshop :
+    #     Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
+    #
+    #     if(Hex_Point in Hmap) :
+    #         Hmap[Hex_Point] = Hmap[Hex_Point]+1
 
 
     # 자율방범대
-    for coor in securitycenter :
-        Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
-
-        if(Hex_Point in Hmap) :
-            Hmap[Hex_Point] = Hmap[Hex_Point]+1
+    # for coor in securitycenter :
+    #     Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
+    #
+    #     if(Hex_Point in Hmap) :
+    #         Hmap[Hex_Point] = Hmap[Hex_Point]+1
     cctv_data = []
     # cctv
     for coor in cctv :
@@ -112,11 +112,11 @@ def giveCost(grid, startx, starty, endx, endy) :
 
 
     #안심벨(공중화장실인듯)
-    for coor in lamp :
-        Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
-
-        if(Hex_Point in Hmap) :
-            Hmap[Hex_Point] = Hmap[Hex_Point]+1
+    # for coor in lamp :
+    #     Hex_Point=grid.hex_at(Point(float(coor.lon),float(coor.lat)))
+    #
+    #     if(Hex_Point in Hmap) :
+    #         Hmap[Hex_Point] = Hmap[Hex_Point]+1
 
 
         
