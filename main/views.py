@@ -89,14 +89,14 @@ def PathFinder(request) :
     start_coordinate = getLatLng(request.POST.get('StartAddr'))
     end_coordinate = getLatLng(request.POST.get('EndAddr'))
 
-    shortData = request.POST.get('shortestRoute').split(",")
-
-    for i in shortData :
-        if(shortData.index(i)%2==0) :
-            lat =i; #위도
-            lon = shortData[(shortData.index(i))+1]  #경도
-            point=[float(lat), float(lon)]
-            SPoint.append(point)
+    # shortData = request.POST.get('shortestRoute').split(",")
+    #
+    # for i in shortData :
+    #     if(shortData.index(i)%2==0) :
+    #         lat =i; #위도
+    #         lon = shortData[(shortData.index(i))+1]  #경도
+    #         point=[float(lat), float(lon)]
+    #         SPoint.append(point)
 
     #-----------------------------맵핑-----------------------------------------
     map = folium.Map(location=start_coordinate,zoom_start=15, width='100%', height='100%',)

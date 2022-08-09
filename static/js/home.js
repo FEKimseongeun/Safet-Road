@@ -43,6 +43,7 @@ function getLocation() {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude,
             });
+
         });
     });
 }
@@ -201,135 +202,66 @@ $("#find_botton").click(function(){
                         }
                     }
                 }
-                $.ajax({
-            method : "POST",
-            url : saferoute,
-            raditional : true,
-            data : {
-                "startX" : resultArray['startaddr'][1],
-                "startY" :resultArray['startaddr'][0],
-                "endX" :resultArray['endaddr'][1],
-                "endY" :resultArray['endaddr'][0],
-                // 'csrfmiddlewaretoken':  csrftoken,
-            },
-            success: (response) => {
-                console.log("성공")
-                safeRoute = response['result']
-                var safeDistance = "총 거리 : "+ (response['totalDistance']).toFixed(1) + "km";
-                var safeTime = " 총 시간 : "+ (response['totalTime']).toFixed(0) + "분";
+                }
+            })
+        });     //안전경로
+    $.ajax({
+        method: "POST",
+        url: saferoute,
+        raditional: true,
+        data: {
+            "startX": resultArray['startaddr'][1],
+            "startY": resultArray['startaddr'][0],
+            "endX": resultArray['endaddr'][1],
+            "endY": resultArray['endaddr'][0],
+            'csrfmiddlewaretoken': csrftoken,
+        },
+        success: (response) => {
+            console.log("성공")
+            safeRoute = response['result']
+            var safeDistance = "총 거리 : " + (response['totalDistance']).toFixed(1) + "km";
+            var safeTime = " 총 시간 : " + (response['totalTime']).toFixed(0) + "분";
 
-                $('#safe-route').text(safeDistance)
-                $('#safe-time').text(safeTime)
+            $('#safe-route').text(safeDistance)
+            $('#safe-time').text(safeTime)
 
-                $('.route-wrap').show();
-                console.log(safeRoute);
-                console.log('최단경로',shortestRoute);
+            $('.route-wrap').show();
+            console.log(safeRoute);
             },
-            fail: (error) => {
-                console.log(error);
-            }
-        })
-        .then((arg) =>{
+        fail: (error) => {
+            console.log(error);
+        }
+    })
+        .then((arg) => {
             // mapping safe
 
             // markers.L.clearLayers();
             // line.L.clearLayers();
 
-            if(start_markers != undefined){
+            if (start_markers != undefined) {
                 leaf_map.removeLayer(end_markers);
                 leaf_map.removeLayer(start_markers)
             }
-            if(short_line!= undefined){
-                leaf_map.removeLayer(short_line);
-                leaf_map.removeLayer(safe_line);
-            }
-            leaf_map.setView([resultArray['startaddr'][0],resultArray['startaddr'][1]],16)
+            // if(short_line!= undefined){
+            //     leaf_map.removeLayer(short_line);
+            //     leaf_map.removeLayer(safe_line);
+            // }
+            leaf_map.setView([resultArray['startaddr'][0], resultArray['startaddr'][1]], 16)
 
-            start_markers=L.marker([resultArray['startaddr'][0],resultArray['startaddr'][1]]).addTo(leaf_map);
-            end_markers=L.marker([resultArray['endaddr'][0],resultArray['endaddr'][1]]).addTo(leaf_map);
-
-
-            //최단 route
-            short_line = L.polyline(shortestRoute,{
-                color: "red",
-                weight: 3
-            }).addTo(leaf_map);
-
-            //안전 route
-            safe_line = L.polyline(safeRoute,{
-                color: "green",
-                weight: 3,
-            }).addTo(leaf_map);
-        });
-            },
-            fail: (error) => {
-                console.log(error);
-            }
-        });        //안전경로
-
-            $.ajax({
-            method : "POST",
-            url : saferoute,
-            raditional : true,
-            data : {
-                "startX" : resultArray['startaddr'][1],
-                "startY" :resultArray['startaddr'][0],
-                "endX" :resultArray['endaddr'][1],
-                "endY" :resultArray['endaddr'][0],
-                'csrfmiddlewaretoken':  csrftoken,
-            },
-            success: (response) => {
-                console.log("성공")
-                safeRoute = response['result']
-                var safeDistance = "총 거리 : "+ (response['totalDistance']).toFixed(1) + "km";
-                var safeTime = " 총 시간 : "+ (response['totalTime']).toFixed(0) + "분";
-
-                $('#safe-route').text(safeDistance)
-                $('#safe-time').text(safeTime)
-
-                $('.route-wrap').show();
-                console.log(safeRoute);
-                console.log('최단경로',shortestRoute);
-            },
-            fail: (error) => {
-                console.log(error);
-            }
-        })
-        .then((arg) =>{
-            // mapping safe
-
-            // markers.L.clearLayers();
-            // line.L.clearLayers();
-
-            if(start_markers != undefined){
-                leaf_map.removeLayer(end_markers);
-                leaf_map.removeLayer(start_markers)
-            }
-            if(short_line!= undefined){
-                leaf_map.removeLayer(short_line);
-                leaf_map.removeLayer(safe_line);
-            }
-            leaf_map.setView([resultArray['startaddr'][0],resultArray['startaddr'][1]],16)
-
-            start_markers=L.marker([resultArray['startaddr'][0],resultArray['startaddr'][1]]).addTo(leaf_map);
-            end_markers=L.marker([resultArray['endaddr'][0],resultArray['endaddr'][1]]).addTo(leaf_map);
+            start_markers = L.marker([resultArray['startaddr'][0], resultArray['startaddr'][1]]).addTo(leaf_map);
+            end_markers = L.marker([resultArray['endaddr'][0], resultArray['endaddr'][1]]).addTo(leaf_map);
 
 
             //최단 route
-            short_line = L.polyline(shortestRoute,{
-                color: "red",
-                weight: 3
-            }).addTo(leaf_map);
+            // short_line = L.polyline(shortestRoute,{
+            //     color: "red",
+            //     weight: 3
+            // }).addTo(leaf_map);
 
             //안전 route
-            safe_line = L.polyline(safeRoute,{
+            safe_line = L.polyline(safeRoute, {
                 color: "green",
-                weight: 3,
+                weight: 2,
             }).addTo(leaf_map);
         });
-
-});
-
-
-
 });

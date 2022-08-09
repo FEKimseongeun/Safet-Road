@@ -136,29 +136,36 @@ class Cctv(models.Model):
 #         db_table = 'django_session'
 
 
-# class Lamp(models.Model):
-#     name = models.AutoField(primary_key=True)
-#     lat = models.FloatField()
-#     lon = models.FloatField()
-#
-#     class Meta:
-#         db_table = 'lamp'
-#
-#
-# class Loadpoint(models.Model):
-#     name = models.AutoField(primary_key=True)
-#     lat = models.FloatField()
-#     lon = models.FloatField()
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'loadpoint'
-#
-#
-# class Securitycenter(models.Model):
+class Lamp(models.Model):
+    name = models.AutoField(primary_key=True)
+    lat = models.FloatField()
+    lon = models.FloatField()
+
+    class Meta:
+        db_table = 'lamp'
+
+
+class Loadpoint(models.Model):
+    name = models.AutoField(primary_key=True)
+    lat = models.FloatField()
+    lon = models.FloatField()
+
+    class Meta:
+        db_table = 'loadpoint'
+
+# class Loadpoint2(models.Model):
 #     name = models.AutoField(primary_key=True)
 #     lat = models.FloatField(blank=True, null=True)
 #     lon = models.FloatField(blank=True, null=True)
 #
 #     class Meta:
-#         db_table = 'securitycenter'
+#         db_table = 'loadpoint2'
+
+
+class Securitycenter(models.Model):
+    name = models.AutoField(primary_key=True)
+    lat = models.FloatField(blank=True, null=True)
+    lon = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'securitycenter'

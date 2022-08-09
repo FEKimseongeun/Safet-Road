@@ -77,7 +77,7 @@ def PathFinder(request) :
     folium.Marker(
         location=end_coordinate,
         popup=request.POST.get('EndAddr'),
-        icon=folium.Icon(color="red"),
+        icon=folium.Icon(color="green"),
     ).add_to(map)
     
     plugins.LocateControl().add_to(map)
