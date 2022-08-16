@@ -26,8 +26,7 @@ SECRET_KEY = My_settings.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['43.200.103.246:8000', 'localhost', '127.0.0.1', '43.200.103.246']
 
 # Application definition
 
