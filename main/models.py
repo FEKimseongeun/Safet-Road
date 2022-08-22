@@ -15,6 +15,14 @@ class Cctv(models.Model):
     class Meta:
         db_table = 'cctv'
 
+class PoliceStation(models.Model):
+    name = models.AutoField(primary_key=True)
+    lat = models.FloatField()
+    lon = models.FloatField()
+
+    class Meta:
+        db_table = 'policeStation'
+
 
 # class Alltimeshop(models.Model):
 #     name = models.AutoField(primary_key=True)

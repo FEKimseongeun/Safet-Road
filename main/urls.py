@@ -24,5 +24,6 @@ urlpatterns = [
    path('path',views.PathFinder, name='pathfinder'),
    path('SetSpot', views.GetSpotPoint, name='getspotpoint'),
    path('saferoute',views.saferoute, name='saferoute'),
-
+   path('getPolice', views.getPolice, name='getPolice'),
+   # path('showPolice', views.showPolice, name='showPolice'),
 ]
