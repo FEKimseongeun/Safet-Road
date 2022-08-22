@@ -267,8 +267,9 @@ $("#find_botton").click(function(){
 });
 
 //현지 police 버튼
-var buttonWrap = document.getElementById("police-btn-wrap");
 var policeButton = document.getElementById("police-btn");
+var policeMarker;
+var policeMarkerList = [];
 var policeMarkers;
 var click = false;
 
@@ -284,7 +285,9 @@ policeButton.addEventListener('click', (event) => {
                 var lat = data[i].fields.lat;
                 var lon = data[i].fields.lon;
                 console.log(lat,lon);
-                policeMarkers = L.marker([lat, lon]).addTo(leaf_map);
+                policeMarker = L.marker([lat, lon]);
+                policeMarkerList.push(policeMarker);
+                policeMarkers = policeMarker.addTo(leaf_map);
             }
         }
     })
@@ -292,51 +295,11 @@ policeButton.addEventListener('click', (event) => {
     }
     else if(click == true) {
         console.log(click);
-        leaf_map.removeLayer(policeMarkers);
+
+        for(var i = 0; i < policeMarkerList.length; i++) {
+            leaf_map.removeLayer(policeMarkerList[i]);
+        }
+
         click = false;
     }
 });
-
-
-
-
-//현지 0821 주석처리2
-
-//policeButton.onclick = function(){
-//    var click = null;
-//
-//    $.ajax({
-//        url: 'getPolice',
-//        dataType: "json",
-//        success: function(data){
-//            for(var i=0; i<data.length; i++){
-//                var lat = data[i].fields.lat;
-//                var lon = data[i].fields.lon;
-//                console.log(lat,lon);
-//                L.marker([lat, lon]).addTo(leaf_map);
-//
-//            }
-//
-//        },
-//        error: function (request,status,error) {
-//            console.log('실패');
-//        },
-//        async: false
-//    });
-//};
-
-// 지도 위에 마커표시
-//$.ajax({
-//        url: 'getPolice',
-//        dataType: "json",
-//        success: function(data){
-//            for(var i=0; i<data.length; i++){
-//                var lat = data[i].fields.lat;
-//                var lon = data[i].fields.lon;
-//                console.log(lat,lon);
-//                L.marker([lat, lon]).addTo(leaf_map);
-//
-//            }
-//
-//        }
-//})
