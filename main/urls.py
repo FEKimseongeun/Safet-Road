@@ -20,10 +20,11 @@ from django.urls import path
 from django.urls.conf import include
 from . import views
 urlpatterns = [
-   path('',views.home, name='home'),
+
+   path('', views.intro, name='intro'),
+   path('home', views.home, name='home'),
    path('path',views.PathFinder, name='pathfinder'),
    path('SetSpot', views.GetSpotPoint, name='getspotpoint'),
    path('saferoute',views.saferoute, name='saferoute'),
    path('getPolice', views.getPolice, name='getPolice'),
-   # path('showPolice', views.showPolice, name='showPolice'),
 ]

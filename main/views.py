@@ -8,9 +8,9 @@ import json, requests
 
 from . import RouteSearch   
 from haversine import haversine #거리측정
-
 from .models import PoliceStation
 from django.core import serializers
+
 
 g = geocoder.ip('me')   #현재 내위치
 # Create your views here.
@@ -197,7 +197,6 @@ def getPolice(request):
 
     return HttpResponse(police_list, content_type="text/json-comment-filtered")
 
-
-# def showPolice(request):
-#
-#      return render(request, 'home.html')
+# chu
+def intro(request):
+    return render(request, '../templates/intro.html')

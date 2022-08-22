@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+{#    <link rel="stylesheet" href="{% static 'css/intro.css' %}?ver=1">#}
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .intro-container {
+            width: 100%;
+            height: 100vh;
+            background-image: url("../static/img/landing_page4.jpg");
+            margin: 0 auto;
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-wrap {
+
+        }
+
+        .logo-img {
+            display: block;
+            width: 360px;
+        }
+
+        .button-wrap {
+            margin-top: 40px;
+        }
+
+        .intro-button {
+            display: block;
+            font-size: 24px;
+            padding: 16px;
+            border: none;
+            background-color: lemonchiffon;
+            color: #666666;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+
+        .intro-button:hover {
+            transition: all ease 0.1s;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-container" >
+        <div class="img-wrap">
+            <img class="logo-img" src="../static/img/logo.png" alt="logo">
+        </div>
+        <div class="button-wrap">
+            <button class="intro-button" onclick="location.href='/home'">시작하기</button>
+        </div>
+        <div>
+            <div>서비스 소개</div>
+            <div>팀 소개</div>
+        </div>
+    </div>
+</body>
+</html>

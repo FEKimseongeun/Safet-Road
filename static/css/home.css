@@ -46,6 +46,20 @@ html, body { height: 100%; }
     width: 80%;
 }
 
+<<<<<<< .merge_file_a07204
+#police-btn-wrap {
+
+}
+
+.police-btn {
+    /*border: none;*/
+    /*border-radius: 2px;*/
+}
+
+#police-btn-img {
+
+}
+=======
 //현지 경찰서 버튼
 
 
@@ -57,3 +71,4 @@ html, body { height: 100%; }
     width: 60pt;
     height: 60pt;
 }
+>>>>>>> .merge_file_a23052
