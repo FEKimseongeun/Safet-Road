@@ -265,3 +265,78 @@ $("#find_botton").click(function(){
             }).addTo(leaf_map);
         });
 });
+
+//현지 police 버튼
+var buttonWrap = document.getElementById("police-btn-wrap");
+var policeButton = document.getElementById("police-btn");
+var policeMarkers;
+var click = false;
+
+//현지 0821 주석처리 1
+policeButton.addEventListener('click', (event) => {
+    if(click==false){
+        console.log(click);
+        $.ajax({
+        url: 'getPolice',
+        dataType: "json",
+        success: function(data){
+            for(var i=0; i<data.length; i++){
+                var lat = data[i].fields.lat;
+                var lon = data[i].fields.lon;
+                console.log(lat,lon);
+                policeMarkers = L.marker([lat, lon]).addTo(leaf_map);
+            }
+        }
+    })
+    click = true;
+    }
+    else if(click == true) {
+        console.log(click);
+        leaf_map.removeLayer(policeMarkers);
+        click = false;
+    }
+});
+
+
+
+
+//현지 0821 주석처리2
+
+//policeButton.onclick = function(){
+//    var click = null;
+//
+//    $.ajax({
+//        url: 'getPolice',
+//        dataType: "json",
+//        success: function(data){
+//            for(var i=0; i<data.length; i++){
+//                var lat = data[i].fields.lat;
+//                var lon = data[i].fields.lon;
+//                console.log(lat,lon);
+//                L.marker([lat, lon]).addTo(leaf_map);
+//
+//            }
+//
+//        },
+//        error: function (request,status,error) {
+//            console.log('실패');
+//        },
+//        async: false
+//    });
+//};
+
+// 지도 위에 마커표시
+//$.ajax({
+//        url: 'getPolice',
+//        dataType: "json",
+//        success: function(data){
+//            for(var i=0; i<data.length; i++){
+//                var lat = data[i].fields.lat;
+//                var lon = data[i].fields.lon;
+//                console.log(lat,lon);
+//                L.marker([lat, lon]).addTo(leaf_map);
+//
+//            }
+//
+//        }
+//})
