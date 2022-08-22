@@ -74,9 +74,9 @@ class Node:
 def giveCost(grid, startx, starty, endx, endy):
     # x : lon(128), y : lat(37)
     loadpoint = Loadpoint.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
-    lamp = Lamp.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
     cctv = Cctv.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
-    securitycenter = Securitycenter.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
+    # securitycenter = Securitycenter.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
+    # lamp = Lamp.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
     # alltimeshop = Alltimeshop.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
 
     # 24시 가게
@@ -87,11 +87,11 @@ def giveCost(grid, startx, starty, endx, endy):
     #         Hmap[Hex_Point] = Hmap[Hex_Point] + 1
 
     #securitycenter
-    for coor in securitycenter:
-        Hex_Point = grid.hex_at(Point(float(coor.lon), float(coor.lat)))
-
-        if (Hex_Point in Hmap):
-            Hmap[Hex_Point] = Hmap[Hex_Point] + 1
+    # for coor in securitycenter:
+    #     Hex_Point = grid.hex_at(Point(float(coor.lon), float(coor.lat)))
+    #
+    #     if (Hex_Point in Hmap):
+    #         Hmap[Hex_Point] = Hmap[Hex_Point] + 1
 
     # cctv
     for coor in cctv:
@@ -108,11 +108,11 @@ def giveCost(grid, startx, starty, endx, endy):
             Hmap[Hex_Point] = Hmap[Hex_Point] + 2
 
     # lamp
-    for coor in lamp:
-        Hex_Point = grid.hex_at(Point(float(coor.lon), float(coor.lat)))
-
-        if (Hex_Point in Hmap):
-            Hmap[Hex_Point] = Hmap[Hex_Point] + 1
+    # for coor in lamp:
+    #     Hex_Point = grid.hex_at(Point(float(coor.lon), float(coor.lat)))
+    #
+    #     if (Hex_Point in Hmap):
+    #         Hmap[Hex_Point] = Hmap[Hex_Point] + 1
 
 
 @logging_time
