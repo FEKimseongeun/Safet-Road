@@ -126,6 +126,10 @@ fabric.properties
 vcs.xml
 discord.xml
 
+./Dockerfile
+.Dockerfile
+Dockergile
+
 My_settings.py
 /My_settings.py
 /My_settings
