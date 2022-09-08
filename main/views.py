@@ -187,7 +187,7 @@ def GetSpotPoint(request):
 
 def getLatLng(addr):
     url = 'https://dapi.kakao.com/v2/local/search/address.json?query=' + addr
-    headers = {"Authorization": "KakaoAK 894cfd738b31d10baba806317025d155"}
+    headers = {"Authorization": "KakaoAK 3367f3548b7ac2afc0df6f893ef0b30f"}
     result = json.loads(str(requests.get(url, headers=headers).text))
     match_first = result['documents'][0]['address']
 
