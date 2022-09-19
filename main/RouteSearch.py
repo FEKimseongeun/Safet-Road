@@ -75,8 +75,8 @@ def giveCost(grid, startx, starty, endx, endy):
     # x : lon(128), y : lat(37)
     loadpoint = Loadpoint.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
     cctv = Cctv.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
-    # securitycenter = Securitycenter.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
-    # lamp = Lamp.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
+    securitycenter = Securitycenter.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
+    lamp = Lamp.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
     # alltimeshop = Alltimeshop.objects.filter(lon__range=(endx, startx), lat__range=(endy, starty)).order_by('lat')
 
     # 24시 가게
@@ -86,33 +86,33 @@ def giveCost(grid, startx, starty, endx, endy):
     #     if (Hex_Point in Hmap):
     #         Hmap[Hex_Point] = Hmap[Hex_Point] + 1
 
-    #securitycenter
+    # #securitycenter
     # for coor in securitycenter:
     #     Hex_Point = grid.hex_at(Point(float(coor.lon), float(coor.lat)))
     #
     #     if (Hex_Point in Hmap):
     #         Hmap[Hex_Point] = Hmap[Hex_Point] + 1
-
-    # cctv
-    for coor in cctv:
-        Hex_Point = grid.hex_at(Point(float(coor.lon), float(coor.lat)))
-
-        if (Hex_Point in Hmap):
-            Hmap[Hex_Point] = Hmap[Hex_Point] + 1
+    #
+    # # cctv
+    # for coor in cctv:
+    #     Hex_Point = grid.hex_at(Point(float(coor.lon), float(coor.lat)))
+    #
+    #     if (Hex_Point in Hmap):
+    #         Hmap[Hex_Point] = Hmap[Hex_Point] + 1
+    #
+    # # lamp
+    # for coor in lamp:
+    #     Hex_Point = grid.hex_at(Point(float(coor.lon), float(coor.lat)))
+    #
+    #     if (Hex_Point in Hmap):
+    #         Hmap[Hex_Point] = Hmap[Hex_Point] + 1
 
     # loadpoint
     for coor in loadpoint:
         Hex_Point = grid.hex_at(Point(float(coor.lon), float(coor.lat)))
 
         if (Hex_Point in Hmap):
-            Hmap[Hex_Point] = Hmap[Hex_Point] + 2
-
-    # lamp
-    # for coor in lamp:
-    #     Hex_Point = grid.hex_at(Point(float(coor.lon), float(coor.lat)))
-    #
-    #     if (Hex_Point in Hmap):
-    #         Hmap[Hex_Point] = Hmap[Hex_Point] + 1
+            Hmap[Hex_Point] = Hmap[Hex_Point] + 1
 
 
 @logging_time
@@ -225,9 +225,9 @@ def startSetting(start_coordinate, end_coordinate):
     endX = end_coordinate[1]
     endY = end_coordinate[0]
 
-    center = hexgrid.Point((float(startX) + float(endX)) / 2, (float(startY) + float(endY)) / 2)  # 중앙
+    center = hexgrid.Point((float(startX) + float(endX))/2, (float(startY) + float(endY))/2)  # 중앙
     rate = 110.574 / (111.320 * math.cos(37.55582994870823 * math.pi / 180))  # 서울의 중앙을 잡고, 경도값에 대한 비율
-    grid = hexgrid.Grid(hexgrid.OrientationFlat, center, Point(rate * 0.00005, 0.00006),
+    grid = hexgrid.Grid(hexgrid.OrientationFlat, center, Point(rate * 0.000054, 0.00006),
                         morton.Morton(2, 32))  # Point : hexgrid Size
     sPoint = grid.hex_at(Point(float(startX), float(startY)))  # hex_at : point to hex -> 출발지 Point -> hex좌표
     ePoint = grid.hex_at(Point(float(endX), float(endY)))  # 목적지
