@@ -161,15 +161,6 @@ class Loadpoint(models.Model):
     class Meta:
         db_table = 'loadpoint'
 
-# class Loadpoint2(models.Model):
-#     name = models.AutoField(primary_key=True)
-#     lat = models.FloatField(blank=True, null=True)
-#     lon = models.FloatField(blank=True, null=True)
-#
-#     class Meta:
-#         db_table = 'loadpoint2'
-
-
 class Securitycenter(models.Model):
     name = models.AutoField(primary_key=True)
     lat = models.FloatField(blank=True, null=True)
