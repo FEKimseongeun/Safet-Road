@@ -227,7 +227,7 @@ def startSetting(start_coordinate, end_coordinate):
 
     center = hexgrid.Point((float(startX) + float(endX))/2, (float(startY) + float(endY))/2)  # 중앙
     rate = 110.574 / (111.320 * math.cos(37.55582994870823 * math.pi / 180))  # 서울의 중앙을 잡고, 경도값에 대한 비율
-    grid = hexgrid.Grid(hexgrid.OrientationFlat, center, Point(rate * 0.000057, 0.000069),
+    grid = hexgrid.Grid(hexgrid.OrientationFlat, center, Point(rate * 0.000056, 0.000067),
                         morton.Morton(2, 32))  # Point : hexgrid Size
     sPoint = grid.hex_at(Point(float(startX), float(startY)))  # hex_at : point to hex -> 출발지 Point -> hex좌표
     ePoint = grid.hex_at(Point(float(endX), float(endY)))  # 목적지
