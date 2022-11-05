@@ -134,3 +134,6 @@ My_settings.py
 /My_settings.py
 /My_settings
 .My_settings
+
+.secrets.json
+secrets.json
