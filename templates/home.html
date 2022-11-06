@@ -5,9 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <title>Safety-Map Home</title>
-    <link rel="stylesheet" href="{% static 'css/home.css' %}?ver=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 
     <script type="text/javascript">
         var setpointpage = "{% url 'getspotpoint' %}";
@@ -44,6 +45,9 @@
 </head>
 
 <body>
+    <header>
+        <div class="nav-header">세로 서비스</div>
+    </header>
     <!-- startPoint, EndPoint InPut -->
     <div class='inputaddr'>
         <div id="pathForm">
@@ -62,16 +66,20 @@
             <div id="search-btn" class="btn-group btn-group-lg" role="group" aria-label="...">
                 <button id='find_botton' type="button" class="btn btn-dark">길찾기</button>
             </div>
-            <div id='police-btn-wrap'>
-                <button id="police-btn">
-                    <img src="../static/img/police_button.png" alt="police-btn-img" id="police-btn-img" style="WIDTH: 60pt; HEIGHT: 60pt">
-                </button>
-            </div>
-            <div id="112-btn-wrap">
-                <img src="../static/img/112_button.png" onclick="alert('비상연락망에 등록된 번호로 전화를 걸까요?');" style="WIDTH: 60pt; HEIGHT: 60pt" />
-                 <a href="tel:010-8984-2776"><img src="../static/img/112_button.png" style="WIDTH: 60pt; HEIGHT: 60pt"></a>
-            </div>
         </div>
+         <div class="icon-flex">
+                <div id='police-btn-wrap'>
+                    <button id="police-btn">👨‍✈️경찰서 위치
+{#                        <img src="../static/img/police_button.png" alt="police-btn-img" id="police-btn-img" style="width: 30pt; height: 30pt; object-fit: cover;">#}
+                    </button>
+                </div>
+                <div id="112-btn-wrap">
+                     <a href="tel:010-7159-6599">
+                          <button id="btn-112">💥당장 신고하기💥</button>
+{#                         <img src="../static/img/112_button.png" style="WIDTH: 30pt; HEIGHT: 30pt">#}
+                     </a>
+                </div>
+         </div>
     </div>
 
     <!--result route information-->

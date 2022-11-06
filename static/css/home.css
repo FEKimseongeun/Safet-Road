@@ -1,8 +1,22 @@
-.inputaddr, .route-wrap{
+.nav-header{
+    padding: 10px;
+    background-color: #003366;
+    font-family: 'Jua', sans-serif;
+    color:white;
+}
+
+.inputaddr{
+    z-index: 2;
+    position: absolute;
+    left: 53%;      /*화면의 왼쪽으로부터 50% 이동*/
+    transform:translateX(-50%); /*자신의 크기 절반만큼 왼쪽으로 이동*/
+}
+
+.route-wrap{
     display: flex;
     z-index: 2;
     position: absolute;
-    left: 50%;      /*화면의 왼쪽으로부터 50% 이동*/
+    left: 53%;      /*화면의 왼쪽으로부터 50% 이동*/
     transform:translateX(-50%); /*자신의 크기 절반만큼 왼쪽으로 이동*/
 }
 
@@ -13,19 +27,20 @@
     bottom: 3%;
 }
 #short, #safe{
+
     background-color: whitesmoke;
+    box-shadow: 5px 5px;
     padding: 10px 10px 5px 10px;
-    padding-right: 35px;
-    margin: 30px;
+    padding-right: 20px;
+    margin: 10px;
 }
 
 #pathForm{
     display: flex;
     justify-content: center;
-    width: 600px;
 
 }
-html, body { height: 100%; }
+html, body {  height: 100%; }
 
 #map{
     z-index: 0;
@@ -35,40 +50,69 @@ html, body { height: 100%; }
 }
 
 #start_input, #end_input{
+    font-family: 'Jua', sans-serif;
+    margin-top: 2% !important;
     margin-bottom: 1% !important;
 }
 
 #search-btn{
+    font-family: 'Jua', sans-serif;
+    width:300px;
+    height: 80px;
+    font-size:12px;
     margin: 5px;
 }
 
 .input-wrap{
-    width: 80%;
+    width: 100%;
 }
 
-<<<<<<< .merge_file_a07204
-#police-btn-wrap {
-
+.icon-flex{
+    display: flex;
 }
 
-.police-btn {
-    /*border: none;*/
-    /*border-radius: 2px;*/
+#police-btn{
+    border:none;
+    font-family: 'Jua', sans-serif;
+    background-color: #2478FF;
+    color:white;
+    border-radius: 5px;
 }
 
-#police-btn-img {
-
-}
-=======
-//현지 경찰서 버튼
-
-
-#police-btn {
-
+#btn-112{
+    margin-left: 10px;
+    border:none;
+    font-family: 'Jua', sans-serif;
+    background-color: #BC2424;
+    color:white;
+    border-radius: 5px;
 }
 
-#police-btn-img {
-    width: 60pt;
-    height: 60pt;
+@media(max-width:500px) {
+    .inputaddr {
+        width: 80%;
+    }
+    .route-wrap{width: 70%;}
+    .start_input, .end_input{
+        width:300px !important;
+        margin-bottom: 1% !important;
+    }
+
+    #search-btn{
+        width:100px;
+
+    }
+    #find_botton{
+        font-size:10px;
+        margin: 5px;
+    }
+    #short,#safe{
+        width:300px;
+    }
+    #short p{
+        font-size:12px;
+    }
+    #safe p{
+        font-size:12px;
+    }
 }
->>>>>>> .merge_file_a23052

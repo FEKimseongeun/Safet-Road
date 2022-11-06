@@ -15,6 +15,7 @@ Including another URLconf
 """
 from os import name
 from django.conf.urls import url
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
@@ -27,3 +28,5 @@ urlpatterns = [
    path('saferoute',views.saferoute, name='saferoute'),
    path('getPolice', views.getPolice, name='getPolice'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
