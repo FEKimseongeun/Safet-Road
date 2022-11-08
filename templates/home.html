@@ -14,7 +14,9 @@
         var setpointpage = "{% url 'getspotpoint' %}";
         var pathfinder = "{% url 'pathfinder' %}";
         var saferoute = "{% url 'saferoute' %}";
+
     </script>
+
     <!-- leaflet js  -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -69,7 +71,7 @@
         </div>
          <div class="icon-flex">
                 <div id='police-btn-wrap'>
-                    <button id="police-btn">👨‍✈️경찰서 위치
+                    <button id="police-btn">👨‍✈️경찰서
 {#                        <img src="../static/img/police_button.png" alt="police-btn-img" id="police-btn-img" style="width: 30pt; height: 30pt; object-fit: cover;">#}
                     </button>
                 </div>
@@ -80,19 +82,19 @@
                      </a>
                 </div>
                 <div class="dropdown">
-                  <button class="dropbtn">▶ 지인에게 당장 신고하기</button>
+                  <button class="dropbtn">▶ 지인에게 통화</button>
                   <div class="dropdown-content">
                     <a href="tel:010-7159-6599">엄마에게 전화걸기</a>
                     <a href="tel:010-7159-6599">아빠에게 전화걸기</a>
                     <a href="tel:010-7159-6599">친구에게 전화걸기</a>
                   </div>
                 </div>
-                <div id="my-btn">
-                          <button id="check-my" onclick="startAlert();">확인용</button>
-                </div>
          </div>
     </div>
-
+        <div class="my-btn">
+                          <button id="check-my" >실시간 감시 ON</button>
+                        <button id="btnStop" >실시간 감시 OFF</button>
+                </div>
     <!--result route information-->
     <div class="route-wrap">
         <div id="short" class="rounded border border-4 border-primary opacity-90">

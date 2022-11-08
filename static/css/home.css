@@ -1,8 +1,11 @@
+@import url('https://webfontworld.github.io/gmarket/GmarketSans.css');
+
 .nav-header{
     padding: 10px;
     background-color: #003366;
-    font-family: 'Jua', sans-serif;
+    font-family: 'GmarketSans', sans-serif;
     color:white;
+    font-weight: 700;
 }
 
 .inputaddr{
@@ -87,6 +90,36 @@ html, body {  height: 100%; }
     color:white;
     border-radius: 5px;
 }
+
+.my-btn{
+    z-index: 2;
+    position: absolute;
+    left: 20%;      /*화면의 왼쪽으로부터 50% 이동*/
+    top: 90%;
+    transform:translateX(-50%); /*자신의 크기 절반만큼 왼쪽으로 이동*/
+    display: flex;
+    flex-direction: column;
+}
+
+#check-my{
+    margin-left: 5px;
+    border:none;
+    font-family: 'Jua', sans-serif;
+    background-color: #FF7012;
+    color:white;
+    border-radius: 5px;
+}
+#btnStop{
+    margin-top:15px;
+    margin-left: 5px;
+    border:none;
+    font-family: 'Jua', sans-serif;
+    background-color: #BC602B;
+    color:white;
+    border-radius: 5px;
+}
+
+
 .dropbtn {
   font-family: 'Jua', sans-serif;
   background-color: #04AA6D;
@@ -94,7 +127,7 @@ html, body {  height: 100%; }
   padding: 5px;
       font-size:15px;
   border: none;
-  margin-left: 10px;
+  margin-left: 5px;
   border-radius: 5px;
 }
 
@@ -125,6 +158,7 @@ html, body {  height: 100%; }
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+
 @media(max-width:500px) {
     .inputaddr {
         width: 80%;
@@ -153,7 +187,7 @@ html, body {  height: 100%; }
         font-size:12px;
     }
     #police-btn{
-        width:75px;
+        width:70px;
         font-size: 12px;
     }
     #btn-112{

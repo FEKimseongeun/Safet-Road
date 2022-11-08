@@ -363,30 +363,54 @@ policeButton.addEventListener('click', (event) => {
 
 
 $("#check-my").click(function(){
-    function success({ coords, timestamp }) {
-            const latitude = coords.latitude;   // 위도
-            const longitude = coords.longitude; // 경도
+    var flag=0;
+    var pre_latitude=0.0;
+    var pre_longitude=0.0;
+    var count=0;
+    let latitude;
+    let longitude;
+    var startAlert;
+    console.log("시작")
+    alert("실시간 위협 감시가 시작되었습니다.")
+        // Geolocation API에 액세스할 수 있는지를 확인
+        if (navigator.geolocation) {
+            //위치 정보를 정기적으로 얻기
+            var id = navigator.geolocation.watchPosition(
+                    function(pos) {
+                        console.log(pos.coords.latitude);     // 위도
+                        console.log(pos.coords.longitude); // 경도
+                        startAlert=setInterval(function()
+                        {
+                            console.log(pre_latitude, pre_longitude)
+                            if((pre_latitude==pos.coords.latitude) && (pre_longitude==pos.coords.longitude))
+                                 if (confirm("위험한 상황이신가요?") == true){
+                                   //true는 확인버튼을 눌렀을 때 코드 작성
+                                   console.log("경찰에 신고");
+                                    console.log("끝");
+                                    clearInterval(startAlert);
+                                    navigator.geolocation.clearWatch(id);
+                                    document.location.href='tel:010-7159-6599';
+                                 }else{
+                                   // false는 취소버튼을 눌렀을 때, 취소됨
+                                   console.log("취소 위험상황아님");
+                                 }
+                        }, 60000 );
+                        pre_latitude=pos.coords.latitude;
+                        pre_longitude=pos.coords.longitude;
+                    });
 
-            alert(`위도: ${latitude}, 경도: ${longitude}, 위치 반환 시간: ${timestamp}`);
+            // 버튼 클릭으로 감시를 중지
+            $('#btnStop').click(function() {
+                console.log("끝");
+                clearInterval(startAlert);
+                navigator.geolocation.clearWatch(id);
+            });
+        } else {
+            alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
         }
 
-        function getUserLocation() {
-            if (!navigator.geolocation) {
-                throw "위치 정보가 지원되지 않습니다.";
-            }
-            navigator.geolocation.watchPosition(success);
-        }
 
-        getUserLocation();
-    // var count=0
-    // let startAlert;
-    // startAlert=setInterval(function() {
-    //         alert('지금 위험한 상황인가요?');
-    //         count++;
-    //         console.log(count)
-    //         if (count>5){
-    //         clearInterval(startAlert);
-    //         }
-    //         }, 3000);
+    // setInterval(
+    //         getUserLocation, 5000);
 });
 
