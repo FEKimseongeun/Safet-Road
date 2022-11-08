@@ -75,9 +75,20 @@
                 </div>
                 <div id="112-btn-wrap">
                      <a href="tel:010-7159-6599">
-                          <button id="btn-112">💥당장 신고하기💥</button>
+                          <button id="btn-112">당장 신고하기</button>
 {#                         <img src="../static/img/112_button.png" style="WIDTH: 30pt; HEIGHT: 30pt">#}
                      </a>
+                </div>
+                <div class="dropdown">
+                  <button class="dropbtn">▶ 지인에게 당장 신고하기</button>
+                  <div class="dropdown-content">
+                    <a href="tel:010-7159-6599">엄마에게 전화걸기</a>
+                    <a href="tel:010-7159-6599">아빠에게 전화걸기</a>
+                    <a href="tel:010-7159-6599">친구에게 전화걸기</a>
+                  </div>
+                </div>
+                <div id="my-btn">
+                          <button id="check-my" onclick="startAlert();">확인용</button>
                 </div>
          </div>
     </div>
@@ -100,6 +111,7 @@
     <div id='map'>
         <!-- {{map|safe}} -->
     </div>
+
 </body>
 
 </html>

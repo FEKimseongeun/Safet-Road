@@ -10,6 +10,7 @@ var policeButton = document.getElementById("police-btn");
 var policeMarker;
 var policeMarkerList = [];
 var policeMarkers;
+var myButton=document.getElementById("check-my");
 var click = false;
 var gps_use = null; //gps의 사용가능 여부
 var gps_lat = null; // 위도
@@ -183,11 +184,11 @@ output.onclick = function(){
     }).open();
 };
 
+
 // //길찾기 버튼 클릭
 $("#find_botton").click(function(){
     shortestRoute=[]    //초기화
     safeRoute=[]
-
     var resultArray=[]; //출발지, 목적지 좌표
 
     //출발지 목적지 주소 -> 좌표변환
@@ -358,5 +359,34 @@ policeButton.addEventListener('click', (event) => {
 
         click = false;
     }
+});
+
+
+$("#check-my").click(function(){
+    function success({ coords, timestamp }) {
+            const latitude = coords.latitude;   // 위도
+            const longitude = coords.longitude; // 경도
+
+            alert(`위도: ${latitude}, 경도: ${longitude}, 위치 반환 시간: ${timestamp}`);
+        }
+
+        function getUserLocation() {
+            if (!navigator.geolocation) {
+                throw "위치 정보가 지원되지 않습니다.";
+            }
+            navigator.geolocation.watchPosition(success);
+        }
+
+        getUserLocation();
+    // var count=0
+    // let startAlert;
+    // startAlert=setInterval(function() {
+    //         alert('지금 위험한 상황인가요?');
+    //         count++;
+    //         console.log(count)
+    //         if (count>5){
+    //         clearInterval(startAlert);
+    //         }
+    //         }, 3000);
 });
 

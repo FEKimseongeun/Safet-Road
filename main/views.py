@@ -6,6 +6,8 @@ import folium
 import geocoder  # import geojson
 import json, requests
 
+import time
+
 from . import RouteSearch
 from haversine import haversine  # 거리측정
 
@@ -22,7 +24,7 @@ def home(request):
     # plugins.Geocoder().add_to(map)
 
     maps = map._repr_html_()  # 지도를 템플릿에 삽입하기위해 iframe이 있는 문자열로 반환 (folium)
-
+    folium.Marker(location=g.latlng).add_to(map)
     return render(request, '../templates/home.html', {'map': maps})
 
 
@@ -199,6 +201,20 @@ def getPolice(request):
     # print(police_list)
 
     return HttpResponse(police_list, content_type="text/json-comment-filtered")
+
+def getMyPosition(request):
+    count=0
+    job1 = {['333', '4444']}
+    # while True:
+    #     print(job1)
+    #     time.sleep(1)
+    #     count = count + 1
+    #     if count > 5:
+    #         break
+    #     return HttpResponse(job1, content_type="text/json-comment-filtered")
+    return HttpResponse(job1, content_type="application/json")
+# def getNowPosition():
+#     return ['333','4444']
 
 def intro(request):
     return render(request, '../templates/intro.html')
