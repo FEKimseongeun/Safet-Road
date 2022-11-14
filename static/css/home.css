@@ -16,21 +16,17 @@
 }
 
 .route-wrap{
-    display: flex;
+    /* font-family: 'Do Hyeon', sans-serif; */
     z-index: 2;
     position: absolute;
-    left: 53%;      /*화면의 왼쪽으로부터 50% 이동*/
-    transform:translateX(-50%); /*자신의 크기 절반만큼 왼쪽으로 이동*/
-}
-
-.route-wrap{
-    /* font-family: 'Do Hyeon', sans-serif; */
+    display:flex;
     font-family: 'Jua', sans-serif;
     font-size: large;
-    bottom: 3%;
+    bottom: 6%;
+    left:50%;
 }
-#short, #safe{
 
+#short, #safe{
     background-color: whitesmoke;
     box-shadow: 5px 5px;
     padding: 10px 10px 5px 10px;
@@ -179,6 +175,7 @@ html, body {  height: 100%; }
     }
     #short,#safe{
         width:300px;
+
     }
     #short p{
         font-size:12px;

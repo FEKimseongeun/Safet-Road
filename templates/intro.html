@@ -3,67 +3,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-{#    <link rel="stylesheet" href="{% static 'css/intro.css' %}?ver=1">#}
-    <style>
-        body {
-            width: 100%;
-            height: 100vh;
-        }
-
-        .intro-container {
-            width: 100%;
-            height: 100vh;
-            background-image: url("../static/img/landing_page4.jpg");
-            margin: 0 auto;
-            flex-direction: column;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .img-wrap {
-
-        }
-
-        .logo-img {
-            display: block;
-            width: 360px;
-        }
-
-        .button-wrap {
-            margin-top: 40px;
-        }
-
-        .intro-button {
-            display: block;
-            font-size: 24px;
-            padding: 16px;
-            border: none;
-            background-color: lemonchiffon;
-            color: #666666;
-            border-radius: 5px;
-            cursor: pointer;
-
-        }
-
-        .intro-button:hover {
-            transition: all ease 0.1s;
-            transform: scale(1.02);
-        }
-    </style>
+    <title>Safety on the Road</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="../static/css/intro.css">
 </head>
 <body>
     <div class="intro-container" >
-        <div class="img-wrap">
-            <img class="logo-img" src="../static/img/logo.png" alt="logo">
+        <div class="preview-section">
+            <img src="../static/img/intro/background_image.png" alt="background-image" class="background-image">
+            <div class="preview-text">안전한 귀갓길을 보장해드려요</div>
+            <img src="../static/img/intro/logo_after.png" alt="logo-image" class="logo-image">
+            <div class="keyword-wrap">
+                <div class="keyword-text">HUMAN</div>
+                <div class="keyword-text">SAFETY</div>
+                <div class="keyword-text">USEFUL</div>
+            </div>
+            <div class="button-wrap">
+                <button class="start-button" onclick="location.href='/home'">안전한 귀갓길 검색하기 >></button>
+            </div>
         </div>
-        <div class="button-wrap">
-            <button class="intro-button" onclick="location.href='/home'">시작하기</button>
+
+        <div class="about-service-section">
+            <div class="black-block"></div>
+            <div class="service-text-wrap">
+                <div class="yellow-text">ABOUT SERVICE</div>
+                <div class="section-title">Safety on the Road</div>
+                <p class="section-text">
+                    밤 늦게 귀가를 하거나 유동인구가 적은 곳에서 귀가를 할 때 일어난 범죄 사례가 많아요.
+                    <br>
+                    <br>
+                    이를 개선하고 예방하기 위해서 안심귀갓길 추천 서비스를 고안해 냈고
+                    <br>
+                    이 서비스를 통해서 많은 사람들이 안심하고 귀가할 수 있도록 도와주고자 하는 것이 저희 서비스의 목적입니다.
+                    <br>
+                    <br>
+                    출발지와 도착지를 찍으면 안심 귀갓길을 추천해주는 것이므로 이 기능에 사용될 길찾기 알고리즘을 A* 알고리즘을 기반으로
+                    <br>
+                    직접 만들어요.
+                    <br>
+                    이 알고리즘으로 CCTV, 안심 비상벨, 유동인구 수, 가로등 등의 오픈데이터들을 이용하여 최적의 경로를 추천해줍니다!
+                    <br>
+                    <br>
+                    이외에도 경찰서의 위치를 확인할 수 있고 SOS 전화도 걸 수 있도록 하는 부가기능도 구현하여 넣었습니다.
+                    <br>
+                    <br>
+                    이뿐만이 아니라 사람의 행동을 감지하고 음성인식을 하는 AI 기술을 넣어 가는 길에 경로를 이탈한 지 몇 분이 지나면
+                    <br>
+                    위험 알람이 뜨면서 사용자의 안전을 확인합니다.
+                </p>
+            </div>
         </div>
-        <div>
-            <div>서비스 소개</div>
-            <div>팀 소개</div>
+
+        <div class="about-us-section">
+            <div class="yellow-block"></div>
+            <div class="member-section">
+            <div class="member-container">
+                <div class="member-one">
+                    <div class="member-wrap">
+                        <div class="member-image-wrap">
+                            <img class="member-image" id="hyunji" src="../static/img/intro/hyunji.png" alt="hyunji">
+                        </div>
+                        <div class="member-text-wrap">
+                            <div class="member-text">휴먼지능정보공학전공</div>
+                            <div class="member-text">201810772</div>
+                            <div class="member-text">박현지</div>
+                        </div>
+                    </div>
+                    <div class="member-wrap">
+                        <div class="member-image-wrap">
+                            <img class="member-image" id="jinseong" src="../static/img/intro/jinseong.png" alt="jinseong">
+                        </div>
+                        <div class="member-text-wrap">
+                            <div class="member-text">휴먼지능정보공학전공</div>
+                            <div class="member-text">2201710758</div>
+                            <div class="member-text">김진성</div>
+                        </div>
+                    </div>
+                    <div class="member-wrap">
+                        <div class="member-image-wrap">
+                            <img class="member-image" id="heeseung" src="../static/img/intro/heeseung.png" alt="heeseung">
+                        </div>
+                        <div class="member-text-wrap">
+                            <div class="member-text">휴먼지능정보공학전공</div>
+                            <div class="member-text">201810820</div>
+                            <div class="member-text">추희승</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-two">
+                    <div class="member-wrap">
+                        <div class="member-image-wrap">
+                            <img class="member-image" id="sebin" src="../static/img/intro/sebin.png" alt="sebin">
+                        </div>
+                        <div class="member-text-wrap">
+                            <div class="member-text">휴먼지능정보공학전공</div>
+                            <div class="member-text">201810786</div>
+                            <div class="member-text">유세빈</div>
+                        </div>
+                    </div>
+                    <div class="member-wrap">
+                        <div class="member-image-wrap">
+                            <img class="member-image" id="seongeun"src="../static/img/intro/seongeun.png" alt="seongeun">
+                        </div>
+                        <div class="member-text-wrap">
+                            <div class="member-text">휴먼지능정보공학전공</div>
+                            <div class="member-text">201910782</div>
+                            <div class="member-text">김성은</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="about-us-section2">
+            <div class="us-text-wrap">
+                <div class="yellow-text">ABOUT US</div>
+                <div class="section-title">Inside Story</div>
+                <div class="section-text-wrap">
+                    <p class="section-text">
+                        졸업프로젝트를 시작으로 모인 세로팀!
+                    </p>
+                    <p class="section-text">
+                        파이썬 장고를 활용하여 길찾기 기능을 구현하였고<br>
+                        플라스크에서 AI 기능을 구현하였습니다.
+                    </p>
+                    <p class="section-text">
+                        김성은, 추희승, 박현지 학우들이 서비스 파트를,<br>
+                        김진성 학우가 AI 파트,<br>
+                        유세빈 학우가 문서 작성 및 각 파트 서포트를 맡았습니다.
+                    </p>
+                </div>
+            </div>
+            <div class="red-block"></div>
         </div>
     </div>
 </body>

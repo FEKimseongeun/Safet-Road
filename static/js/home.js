@@ -374,11 +374,10 @@ $("#check-my").click(function(){
     alert("실시간 위협 감시가 시작되었습니다.")
         // Geolocation API에 액세스할 수 있는지를 확인
         if (navigator.geolocation) {
+            console.log("들어옴")
             //위치 정보를 정기적으로 얻기
             var id = navigator.geolocation.watchPosition(
                     function(pos) {
-                        console.log(pos.coords.latitude);     // 위도
-                        console.log(pos.coords.longitude); // 경도
                         startAlert=setInterval(function()
                         {
                             console.log(pre_latitude, pre_longitude)
@@ -393,15 +392,17 @@ $("#check-my").click(function(){
                                  }else{
                                    // false는 취소버튼을 눌렀을 때, 취소됨
                                    console.log("취소 위험상황아님");
+                                    clearInterval(startAlert);
+                                    navigator.geolocation.clearWatch(id);
                                  }
-                        }, 60000 );
+                        }, 6000 );
                         pre_latitude=pos.coords.latitude;
                         pre_longitude=pos.coords.longitude;
                     });
 
             // 버튼 클릭으로 감시를 중지
             $('#btnStop').click(function() {
-                console.log("끝");
+                alert("실시간 감시 끝");
                 clearInterval(startAlert);
                 navigator.geolocation.clearWatch(id);
             });
@@ -409,8 +410,5 @@ $("#check-my").click(function(){
             alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
         }
 
-
-    // setInterval(
-    //         getUserLocation, 5000);
 });
 
